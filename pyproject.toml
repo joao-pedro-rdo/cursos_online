@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "cursos-online"
+version = "0.1.0"
+description = "Projeto plataforma de cursos online orientado a objetos"
+authors = ["Joao Pedro <joaoprdo2.aluno@unipampa.edu.br>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+tabulate = "^0.9.0"
+
+[tool.poetry.group.dev.dependencies]
+black = "^24.4.2"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
