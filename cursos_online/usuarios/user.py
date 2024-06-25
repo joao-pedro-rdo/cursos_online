@@ -38,4 +38,6 @@ class User:
         self.senha = senha
 
         # Calling the parent class initializer to register the object into the instances list of the class
-        #  super().__init__()@classmethod
+        super().__init__() @ classmethod  # ? DE ONDE VEM ESSA CLASSE
+
+        # TODO: AINDA FALTA IMPLMENTAR OS METODOS DO USER.PY
