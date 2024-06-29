@@ -1,5 +1,6 @@
 # Minha Docstring
 """
+oq tem no arquivo e praa que serve (Este modulo ...)
 Classe pai que implementa a maior parte dos atributos e metodos de todos os usuarios do cursos_online 
 """
 # Importação da bib time
@@ -17,7 +18,7 @@ class User:
 
     # ? Porque fazemmos isso afinal ???
 
-    def __init__(  # Construtor
+    def __init__(  # Construtor, str =  " " type hint para usar dica do parametro mas pode usar outra coisa dica mesmo, e o = " " é o valor padrao
         self,
         email: str = "",
         cpf: str = "",
@@ -25,6 +26,7 @@ class User:
         data_nascimento: str = "",
         senha: str = "",
     ):
+        # ? porque tem outras função que usa "->"   
         """
         Inicialização dos objetos do user
         """
