@@ -3,6 +3,9 @@
 oq tem no arquivo e praa que serve (Este modulo ...)
 Classe pai que implementa a maior parte dos atributos e metodos de todos os usuarios do cursos_online 
 """
+# Importação da classe que faz o crud nas demais classes
+from entity_manager import EntityManager
+
 # Importação da bib time
 from time import time
 
@@ -11,7 +14,7 @@ from time import time
 from hashlib import sha256
 
 
-class User:
+class User(EntityManager):
     """
     Classe pai para ser usada com a herança
     """
@@ -26,7 +29,7 @@ class User:
         data_nascimento: str = "",
         senha: str = "",
     ):
-        # ? porque tem outras função que usa "->"   
+        # ? porque tem outras função que usa "->"
         """
         Inicialização dos objetos do user
         """
