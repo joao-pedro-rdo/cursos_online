@@ -1,30 +1,12 @@
-from usuarios.user import User 
-from usuarios.entity_manager import EntityManager
+from .usuarios import *
+# from usuarios.administrador import Administrador 
 
+# from usuarios.entity_manager import EntityManager
 
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from faker import Faker
 from random import choice #? OQUE ESSA PORRA FAZ ???
-
-
-# faker_br = Faker(locale="pt_BR")
-
-
-# teste = User(
-#     email=faker_br.ascii_company_email(),
-#     senha=faker_br.password(),
-#     nome=faker_br.name(),
-#     # cellphone=faker_instance.phone_number(),
-#     data_nascimento=faker_br.date(),
-#     cpf=11111111111
-#     )
-# print(teste.nome)
-# print(teste.senha)
-# print(teste.email)
-
-
-
 
 def main():
     # Definicao da intancia do faker para a lingua BR
@@ -34,16 +16,22 @@ def main():
     print("\n\n")
     print("==== Criando Instâncias ====")
     
-    #! TESTE QUE FUNCIONA 
-    hop = User(email=faker_instance.email(), senha=faker_instance.password(), nome=faker_instance.name(), data_nascimento=faker_instance.date_this_year(), cpf=faker_instance.cpf())
-    print(hop.nome)
-    print(hop.email)
-    print(hop.senha)
-    # print(hop.data_nascimento)
-    print(hop.cpf)
+    # #! TESTE QUE FUNCIONA 
+    # print("EU SOU O ADM =======")
+    # hop = Administrador(email=faker_instance.email(), senha=faker_instance.password(), nome=faker_instance.name(), data_nascimento=faker_instance.date_this_year(), cpf=faker_instance.cpf())
+    # print(hop.nome)
+    # print(hop.email)
+    # print(hop.senha)
+    # # print(hop.data_nascimento)
+    # print(hop.cpf)
 
-    for _ in range(5):
-        User(email=faker_instance.email(), senha=faker_instance.password(), nome=faker_instance.name(), data_nascimento=faker_instance.date_this_year(), cpf=faker_instance.cpf())
+    for _ in range(2):
+        Administrador(email=faker_instance.email(), senha=faker_instance.password(), nome=faker_instance.name(), data_nascimento=faker_instance.date_this_year(), cpf=faker_instance.cpf())
+    for _ in range(2):
+        Aluno(email=faker_instance.email(), senha=faker_instance.password(), nome=faker_instance.name(), data_nascimento=faker_instance.date_this_year(), cpf=faker_instance.cpf())
+    for _ in range(2):
+        Professor(email=faker_instance.email(), senha=faker_instance.password(), nome=faker_instance.name(), data_nascimento=faker_instance.date_this_year(), cpf=faker_instance.cpf())
+
 
 
  
