@@ -1,61 +1,33 @@
-from usuarios.user import User 
-from usuarios.entity_manager import EntityManager
+# Importing local modules and packages
+from user import User
+from entity_manager import EntityManager
 
-
+# Importing third-party libraries
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from faker import Faker
-from random import choice #? OQUE ESSA PORRA FAZ ???
-
-
-# faker_br = Faker(locale="pt_BR")
-
-
-# teste = User(
-#     email=faker_br.ascii_company_email(),
-#     senha=faker_br.password(),
-#     nome=faker_br.name(),
-#     # cellphone=faker_instance.phone_number(),
-#     data_nascimento=faker_br.date(),
-#     cpf=11111111111
-#     )
-# print(teste.nome)
-# print(teste.senha)
-# print(teste.email)
-
-
+from random import choice
 
 
 def main():
-    # Definicao da intancia do faker para a lingua BR
+    """Main function of the application."""
+    # Defining a Faker instance for generating random data
     faker_instance = Faker(locale="pt_BR")
 
-    #Criando as instancias
+    # Creating instances of the User class
     print("\n\n")
     print("==== Criando Instâncias ====")
-    
-    #! TESTE QUE FUNCIONA 
-    hop = User(email=faker_instance.email(), senha=faker_instance.password(), nome=faker_instance.name(), data_nascimento=faker_instance.date_this_year(), cpf=faker_instance.cpf())
-    print(hop.nome)
-    print(hop.email)
-    print(hop.senha)
-    # print(hop.data_nascimento)
-    print(hop.cpf)
-
     for _ in range(5):
-        User(email=faker_instance.email(), senha=faker_instance.password(), nome=faker_instance.name(), data_nascimento=faker_instance.date_this_year(), cpf=faker_instance.cpf())
+        User(name=faker_instance.name(), email=faker_instance.email())
 
-
- 
+    # Listing the created instances
     print("\n\n")
     print("==== Listando Instâncias Criadas ====")
-    
     for user in User.all():
-        print(f"{user.id}: {user.nome} ({user.email})") # TODO: MOSTRAR O RESTO DOS DADOS 
+        print(f"{user.id}: {user.name} ({user.email})")
     print("\n\n")
 
-
-    '''
+    # Checking if the user wants to update a random instance
     random_user = choice(User.all())
     update_instance = input(f"Atualizar instância {random_user}? [S/N]")
 
@@ -78,7 +50,7 @@ def main():
         print("==== Deletando Instâncias ====")
         for user in User.all():
             user.delete(id=user.id)
-'''
+
 
 if __name__ == "__main__":
     # Defining the database connection (please note that the database URL is hardcoded for brevity, which is not recommended)
@@ -89,4 +61,3 @@ if __name__ == "__main__":
 
     # Running the main function
     main()
-

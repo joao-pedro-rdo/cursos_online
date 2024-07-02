@@ -4,45 +4,54 @@ oq tem no arquivo e praa que serve (Este modulo ...)
 Classe pai que implementa a maior parte dos atributos e metodos de todos os usuarios do cursos_online 
 """
 # Importação da classe que faz o crud nas demais classes
-from entity_manager import EntityManager
+from .entity_manager import EntityManager
 
-# Importação da bib time
-from time import time
-
-# ? Preciso instalar essas paradas no meu poetry ?
 # Importação
-from hashlib import sha256
+#from hashlib import sha256
 
+#importacao das bibliotecas da SQL
+from sqlalchemy import Column, Integer, String, Date, DateTime
+# from sqlalchemy.orm import declarative_base
 
-class User(EntityManager):
+# class User():
+class User(EntityManager.base, EntityManager):
     """
     Classe pai para ser usada com a herança
+    MELHORAR EXPLICAO DA ORM
     """
 
-    # ? Porque fazemmos isso afinal ???
+    # Definiçao nome da tebela 
+    __tablename__ = 'usuarios'  #? Essa nomeclatura "__tablename__" é padrao ou eu posso definir 
 
-    def __init__(  # Construtor, str =  " " type hint para usar dica do parametro mas pode usar outra coisa dica mesmo, e o = " " é o valor padrao
-        self,
-        email: str = "",
-        cpf: str = "",
-        nome: str = "",
-        data_nascimento: str = "",
-        senha: str = "",
-    ):
-        # ? porque tem outras função que usa "->"
+    # Define as colunas da tabela 
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    nome = Column(String(50), nullable=False)
+    email = Column(String(50), nullable=False)
+    # data_nascimento = Column(Date)
+    senha = Column(String(50), nullable=False)  #? COMO QUE FAZ PARA HASHEAR
+    cpf = Column(String(50), nullable=False)
+    # criado_em = Column(DateTime, nullable=False)
+    # atualizado_em = Column(DateTime, nullable=False)
+    
+    # Construtor, str =  " " type hint para usar dica do parametro mas pode usar outra coisa dica mesmo, e o = " " é o valor padrao
+    def __init__(self, email: str = "", senha: str = "", nome: str = "",  data_nascimento: str = "", cpf:  str = ""):
         """
         Inicialização dos objetos do user
         """
-        # TODO USAR HASH PARA ESCONDER A SENHA
-        self.criado_em = time()
-        self.atualizado_em = time()
+        # Atributos da classe 
+        # self.criado_em = time()
+        # self.atualizado_em = time()
         self.email = email
         self.cpf = cpf
         self.nome = nome
-        self.data_nascimento = data_nascimento
+        # self.data_nascimento = data_nascimento
         self.senha = senha
 
         # Calling the parent class initializer to register the object into the instances list of the class
-        super().__init__() @ classmethod  # ? DE ONDE VEM ESSA CLASSE
+        # super().__init__() #? super().__init__ OU ISSO AI 
+        EntityManager.__init__(self)
 
-        # TODO: AINDA FALTA IMPLMENTAR OS METODOS DO USER.PY
+    def porra(self):
+        print("HELO WORD: Estou instaciado")
+        return None
+

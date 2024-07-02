@@ -10,17 +10,23 @@ class EntityManager:
 
     def __init__(self) -> object:
         """Inicializa o objeto e registra na base de dados"""
+        print("PQP")
+        # print("TESTE: ", EntityManager.session.query(func.count(self.__class__.id)))
+        self.id = EntityManager.session.query(func.count(self.__class__.id)).scalar() + 1
+        print("PQP")
 
-    self.id = EntityManager.session.query(func.count(self.__class__.id)).scalar() + 1
-    # 'self.__class__' é uma forma de referir-se à classe da instância atual
-    # 'func.count(self.__class__.id)' é uma chamada para a função SQL COUNT, que conta o número de valores não-nulos na coluna id da tabela correspondente à classe.
-    # 'session.query' cria uma consulta
-    print(f"Instância {self} criada com sucesso.")
-    # Adiciona a instancia ao bd
-    EntityManager.session.add(self)
+        # 'self.__class__' é uma forma de referir-se à classe da instância atual
+        # 'func.count(self.__class__.id)' é uma chamada para a função SQL COUNT, que conta o número de valores não-nulos na coluna id da tabela correspondente à classe.
+        # 'session.query' cria uma consulta
+        print(f"Instância {self} criada com sucesso.")
+        # Adiciona a instancia ao bd
+        print("PQP")
 
-    # Confirma
-    EntityManager.session.commit()
+        EntityManager.session.add(self)
+
+        # Confirma
+        EntityManager.session.commit()
+
 
     def __str__(self) -> str:
         """Defines how the object is represented inside print statements.
@@ -42,7 +48,7 @@ class EntityManager:
     def all(cls) -> list:
         """Retorna a lista de todos os obejtos criados nas classe."""
         return EntityManager.session.query(cls).all()
-
+    
     @classmethod
     def update(cls, id: int, new_attributes: dict):
         """Updates an instance based on its ID and a dictionary with the new attributes.
@@ -85,3 +91,5 @@ class EntityManager:
             print(f"Instância {id} deletada com sucesso.")
         else:
             print(f"Instância com ID {id} não encontrada.")
+
+

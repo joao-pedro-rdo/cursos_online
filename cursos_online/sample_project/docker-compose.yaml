@@ -1,0 +1,19 @@
+version: '3.9'
+
+services:
+  db:
+    image: mysql:latest
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root  # Defina a senha do usuário root do MySQL
+      MYSQL_DATABASE: teste     # Nome do banco de dados a ser criado
+      MYSQL_USER: user                  # Usuário do MySQL
+      MYSQL_PASSWORD: password          # Senha do usuário do MySQL
+    ports:
+      - "3306:3306"                     # Mapeamento da porta do MySQL
+    networks:
+      - mynetwork                       # Nome da rede bridge
+
+networks:
+  mynetwork:
+    driver: bridge
