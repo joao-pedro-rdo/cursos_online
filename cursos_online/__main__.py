@@ -1,4 +1,5 @@
 from .usuarios import *
+from cursos.curso import *
 # from usuarios.administrador import Administrador 
 
 # from usuarios.entity_manager import EntityManager
@@ -16,7 +17,7 @@ def main():
     print("\n\n")
     print("==== Criando Instâncias ====")
     
-    # #! TESTE QUE FUNCIONA 
+    #! TESTE QUE FUNCIONA 
     # print("EU SOU O ADM =======")
     # hop = Administrador(email=faker_instance.email(), senha=faker_instance.password(), nome=faker_instance.name(), data_nascimento=faker_instance.date_this_year(), cpf=faker_instance.cpf())
     # print(hop.nome)
@@ -25,13 +26,16 @@ def main():
     # # print(hop.data_nascimento)
     # print(hop.cpf)
 
+    # ? PORUQE '_' ?????
     for _ in range(2):
         Administrador(email=faker_instance.email(), senha=faker_instance.password(), nome=faker_instance.name(), data_nascimento=faker_instance.date_this_year(), cpf=faker_instance.cpf())
     for _ in range(2):
         Aluno(email=faker_instance.email(), senha=faker_instance.password(), nome=faker_instance.name(), data_nascimento=faker_instance.date_this_year(), cpf=faker_instance.cpf())
     for _ in range(2):
         Professor(email=faker_instance.email(), senha=faker_instance.password(), nome=faker_instance.name(), data_nascimento=faker_instance.date_this_year(), cpf=faker_instance.cpf())
-
+    
+    curso_teste =  Cursos(nome = faker_instance.place_name(), descricao = faker_instance.text())
+    print("Sou CURSO ==", curso_teste.nome)
 
 
  
@@ -57,16 +61,16 @@ def main():
 
         print(f"[DEPOIS] {random_user}. Nome: {random_user.name}, Email: {random_user.email}")
         print("\n\n")
-
-    # Checking if the user wants to remove the created instances
+'''
+   # Checking if the user wants to remove the created instances
     remove_instances = input("Remover instâncias? [S/N]")
 
-    # If the user wants to remove the instances, all instances will be deleted from the database
+    # Remove as instancias da database
     if remove_instances.lower() == "s":
         print("==== Deletando Instâncias ====")
         for user in User.all():
             user.delete(id=user.id)
-'''
+
 
 if __name__ == "__main__":
     # Defining the database connection (please note that the database URL is hardcoded for brevity, which is not recommended)
