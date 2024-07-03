@@ -36,13 +36,26 @@ def main():
             nome=faker_instance.name(),
             cpf=faker_instance.cpf(),
         )
+    for _ in range(2):
+        Curso(
+            nome=faker_instance.name(),
+            descricao=faker_instance.text(),
+        )
+    for _ in range(2):
+        Aula(
+            nome=faker_instance.name(),
+            url=faker_instance.url(),
+        )
 
-    curso_teste = Curso(nome="Nome do Curso", descricao=faker_instance.text())
-    print("Sou CURSO ==", curso_teste.nome)
+    # curso_teste = Curso(nome="Nome do Curso", descricao=faker_instance.text())
+    # print(" ======== Sou CURSO ==", curso_teste.nome)
+
+    # aula_teste = Aula(nome="Nome da Aula", url=faker_instance.url())
+    # print("==== Sou AULA ==", aula_teste.nome)
 
     print("\n\n")
     print("==== Listando Instâncias Criadas ====")
-    classes_a_serem_listadas = [Administrador, Aluno, Professor, Curso]
+    classes_a_serem_listadas = [Administrador, Aluno, Professor, Curso, Aula]
     for classe in classes_a_serem_listadas:
         for instancia in classe.all():
             print(instancia)
@@ -59,10 +72,11 @@ def main():
             for instancia in classe.all():
                 classe.delete(id=instancia.id)
 
-
 if __name__ == "__main__":
-    # Defining the database connection (please note that the database URL is hardcoded for brevity, which is not recommended)
-    GerenciadorEntidades.engine = create_engine("mysql+pymysql://root:root@localhost/cursos_online")
+    #! Definicao da conecao com banco de dados e criacao das tabelas
+    GerenciadorEntidades.engine = create_engine(
+        "mysql+pymysql://root:root@localhost/cursos_online"
+    )
     GerenciadorEntidades.base.metadata.create_all(GerenciadorEntidades.engine)
     GerenciadorEntidades.session_maker = sessionmaker(bind=GerenciadorEntidades.engine)
     GerenciadorEntidades.session = GerenciadorEntidades.session_maker()

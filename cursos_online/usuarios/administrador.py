@@ -20,7 +20,10 @@ class Administrador(Usuario):
     senha = Column(String(50), nullable=False)
 
     # Variável padrão do SQLAlchemy que define a identidade polimórfica da classe (em linhas gerais, define o tipo de herança do SQLAlchemy)
-    __mapper_args__ = {"polymorphic_identity": "administradores", "concrete": True}
+    __mapper_args__ = {
+        "polymorphic_identity": "administradores",
+        "concrete": True,
+    }
 
     def __init__(self, email: str = "", senha: str = "", nome: str = "", cpf: str = ""):
         Usuario.__init__(self, nome=nome, email=email, cpf=cpf, senha=senha)

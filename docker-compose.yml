@@ -9,3 +9,11 @@ services:
     container_name: bd-cursos-online
     environment:
       MYSQL_ROOT_PASSWORD: root
+    networks:
+      macvlan_net:
+        ipv4_address: 192.168.1.115
+
+networks:
+  macvlan_net:
+    name: "macvlan-net"
+    external: true

@@ -4,17 +4,15 @@ oq tem no arquivo e praa que serve (Este modulo ...)
 Classe pai que implementa a maior parte dos atributos e metodos de todos os usuarios do cursos_online 
 """
 # Importação da classe que faz o CRUD nas demais classes
-from cursos_online.funcionalidades_auxiliares.gerenciador_entidades import GerenciadorEntidades
+from cursos_online.funcionalidades_auxiliares.gerenciador_entidades import (
+    GerenciadorEntidades,
+)
 
 # Importação das bibliotecas da SQL
 from sqlalchemy import Column, Integer, String
 
 
 class Usuario(GerenciadorEntidades.base, GerenciadorEntidades):
-    """
-    Classe pai para ser usada com a herança
-    MELHORAR EXPLICAO DA ORM
-    """
 
     # Definição nome da tabela
     __tablename__ = "usuarios"  # ? Essa nomeclatura "__tablename__" é padrao ou eu posso definir
