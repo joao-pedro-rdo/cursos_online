@@ -1,5 +1,4 @@
+from .curso import Curso
 
-from .cursos import Curso
 
-
-__all__ = ['Curso']
+__all__ = ["Curso"]
