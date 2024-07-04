@@ -1,7 +1,7 @@
 from .usuario import Usuario
 
 from sqlalchemy import Column, Integer, String
-
+from sqlalchemy.orm import relationship
 
 class Administrador(Usuario):
     """Classe Herdada de usuario que representa o adm/criador/moderador dos cursos"""
@@ -19,6 +19,7 @@ class Administrador(Usuario):
     # criptografada do usuário. Esta funcionalidade de criptografia de senha ainda deve ser implementada.
     senha = Column(String(50), nullable=False)
 
+    curso = relationship("Curso", back_populates="administrador")
     # Variável padrão do SQLAlchemy que define a identidade polimórfica da classe (em linhas gerais, define o tipo de herança do SQLAlchemy)
     __mapper_args__ = {
         "polymorphic_identity": "administradores",

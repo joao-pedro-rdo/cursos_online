@@ -11,6 +11,7 @@ from cursos_online.funcionalidades_auxiliares.gerenciador_entidades import (
 # Importação das bibliotecas da SQL
 from sqlalchemy import Column, Integer, String
 
+from hashlib import sha256
 
 class Usuario(GerenciadorEntidades.base, GerenciadorEntidades):
 
@@ -27,7 +28,7 @@ class Usuario(GerenciadorEntidades.base, GerenciadorEntidades):
     # Construtor, str =  " " type hint para usar dica do parametro mas pode usar outra coisa dica mesmo, e o = " " é o valor padrao
     def __init__(self, email: str = "", senha: str = "", nome: str = "", cpf: str = ""):
         """
-        Inicialização dos objetos do user
+        Inicialização dos objetos do usuario
         """
         # Atributos da classe
         self.email = email
@@ -41,7 +42,33 @@ class Usuario(GerenciadorEntidades.base, GerenciadorEntidades):
 
         # Calling the parent class initializer to register the object into the instances list of the class
         GerenciadorEntidades.__init__(self)
-
-    def porra(self):
-        print("HELO WORLD: Estou instanciado")
-        return None
+    
+    #! Nao testado
+    @classmethod
+    def validacao_email(cls, email: str, usuario_existente: object = None) -> bool:
+        email_is_valid = "@" in email and "." in email and not any(user.email == email for user in User.all() if user != usuario_existente)
+        return email_is_valid
+    
+    @classmethod
+    def validacao_senha(cls, senha: str) -> bool:
+        senha_valida = len(senha) >= 5
+        return senha_valida
+    
+    @classmethod
+    def validacao_nome(cls, nome: str) -> bool:
+        nome_valido = all(substring.isalpha() for substring in name.split(" "))
+        return nome_valido
+    
+    def criacao_senha_hash(senha: str) -> str:
+        senha_bytes = senha.encode("utf-8")
+        hash = sha256(senha_bytes)
+        # Gera o hash em formato hexadecimal
+        senha_hash = hash.hexdigest()
+        return senha_hash
+    
+    @classmethod
+    def autenticacao(cls, email: str, senha: str) -> object:
+        return next(
+            (usuario for usuario in Usuario.all() if usuario.email == email and Usuario.criacao_senha_hash(senha=senha) == Usuario.criacao_senha_hash(usuario.senha)),
+            None,
+        )

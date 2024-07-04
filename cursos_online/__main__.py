@@ -6,6 +6,7 @@ from cursos_online.cursos import *
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from faker import Faker
+from random import choice
 
 
 def main():
@@ -15,21 +16,21 @@ def main():
     # Criando as instancias
     print("\n\n")
     print("==== Criando Instâncias ====")
-    for _ in range(2):
+    for _ in range(5):
         Administrador(
             email=faker_instance.email(),
             senha=faker_instance.password(),
             nome=faker_instance.name(),
             cpf=faker_instance.cpf(),
         )
-    for _ in range(2):
+    for _ in range(5):
         Aluno(
             email=faker_instance.email(),
             senha=faker_instance.password(),
             nome=faker_instance.name(),
             cpf=faker_instance.cpf(),
         )
-    for _ in range(2):
+    for _ in range(5):
         Professor(
             email=faker_instance.email(),
             senha=faker_instance.password(),
@@ -40,11 +41,14 @@ def main():
         Curso(
             nome=faker_instance.name(),
             descricao=faker_instance.text(),
+            id_professor=choice(Professor.all()).id,
+            id_administrador=choice(Administrador.all()).id
         )
-    for _ in range(2):
+    for _ in range(10):
         Aula(
             nome=faker_instance.name(),
             url=faker_instance.url(),
+            id_curso=choice(Curso.all()).id
         )
 
     # curso_teste = Curso(nome="Nome do Curso", descricao=faker_instance.text())
