@@ -56,7 +56,7 @@ class Usuario(GerenciadorEntidades.base, GerenciadorEntidades):
     
     @classmethod
     def validacao_nome(cls, nome: str) -> bool:
-        nome_valido = all(substring.isalpha() for substring in name.split(" "))
+        nome_valido = all(substring.isalpha() for substring in nome.split(" "))
         return nome_valido
     
     def criacao_senha_hash(senha: str) -> str:

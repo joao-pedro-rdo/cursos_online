@@ -10,6 +10,7 @@ from random import choice
 
 
 def main():
+  
     # Definicao da intancia do faker para a lingua BR
     faker_instance = Faker(locale="pt_BR")
 
