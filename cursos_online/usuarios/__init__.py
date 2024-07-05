@@ -8,6 +8,7 @@ from .administrador import Administrador
 from .aluno import Aluno
 from .professor import Professor
 from .usuario import Usuario
+from .matricula import Matricula
 
 
-__all__ = ["Usuario", "Administrador", "Aluno", "Professor"]
+__all__ = ["Usuario", "Administrador", "Aluno", "Professor", "Matricula"]

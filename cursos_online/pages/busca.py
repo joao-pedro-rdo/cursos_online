@@ -19,11 +19,9 @@ st.write("Lista de Classes:")
 for instancia in instancia:
     st.write(instancia)
 
-#! Definicao da conecao com banco de dados e criacao das tabelas
- #! Definicao da conecao com banco de dados e criacao das tabelas
-    GerenciadorEntidades.engine = create_engine(
-        "mysql+pymysql://root:root@localhost/cursos_online"
-    )
+    #! Definicao da conecao com banco de dados e criacao das tabelas
+    #! Definicao da conecao com banco de dados e criacao das tabelas
+    GerenciadorEntidades.engine = create_engine("mysql+pymysql://root:root@localhost/cursos_online")
     GerenciadorEntidades.base.metadata.create_all(GerenciadorEntidades.engine)
     GerenciadorEntidades.session_maker = sessionmaker(bind=GerenciadorEntidades.engine)
     GerenciadorEntidades.session = GerenciadorEntidades.session_maker()

@@ -1,5 +1,7 @@
-from .usuario import Usuario
+from cursos_online.usuarios.usuario import Usuario
+from cursos_online.funcionalidades_auxiliares.gerenciador_entidades import GerenciadorEntidades
 
+# from cursos_online.usuarios.matricula import Matricula
 from sqlalchemy import Column, Integer, String
 
 
@@ -24,3 +26,8 @@ class Aluno(Usuario):
 
     def __init__(self, email: str = "", senha: str = "", nome: str = "", cpf: str = ""):
         Usuario.__init__(self, nome=nome, email=email, cpf=cpf, senha=senha)
+
+    @property
+    def cursos(self):
+        Matricula = next(subclasse for subclasse in list(GerenciadorEntidades.__subclasses__()) if subclasse.__name__ == "Matricula")
+        return [matricula.curso for matricula in Matricula.all() if matricula.aluno == self]

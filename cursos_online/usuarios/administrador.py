@@ -3,6 +3,7 @@ from .usuario import Usuario
 from sqlalchemy import Column, Integer, String
 from sqlalchemy.orm import relationship
 
+
 class Administrador(Usuario):
     """Classe Herdada de usuario que representa o adm/criador/moderador dos cursos"""
 

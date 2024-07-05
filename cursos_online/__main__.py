@@ -10,13 +10,17 @@ from random import choice
 
 
 def main():
-  
+
     # Definicao da intancia do faker para a lingua BR
     faker_instance = Faker(locale="pt_BR")
 
     # Criando as instancias
     print("\n\n")
     print("==== Criando Instâncias ====")
+
+    # print(list(GerenciadorEntidades.__subclasses__()))
+
+    # exit()
     for _ in range(5):
         Administrador(
             email=faker_instance.email(),
@@ -43,15 +47,17 @@ def main():
             nome=faker_instance.name(),
             descricao=faker_instance.text(),
             id_professor=choice(Professor.all()).id,
-            id_administrador=choice(Administrador.all()).id
+            id_administrador=choice(Administrador.all()).id,
         )
     for _ in range(10):
-        Aula(
-            nome=faker_instance.name(),
-            url=faker_instance.url(),
-            id_curso=choice(Curso.all()).id
-        )
+        Aula(curso=choice(Curso.all()), nome=faker_instance.name(), url=faker_instance.url())
 
+    aluno_aleatorio = choice(Aluno.all())
+    curso_aleatorio = choice(Curso.all())
+    Matricula(curso=curso_aleatorio, aluno=aluno_aleatorio)
+
+    print("Lista de cursos do aluno: ", aluno_aleatorio.cursos)
+    print("Lista de alunos do curso: ", curso_aleatorio.alunos)
     # curso_teste = Curso(nome="Nome do Curso", descricao=faker_instance.text())
     # print(" ======== Sou CURSO ==", curso_teste.nome)
 
@@ -77,11 +83,10 @@ def main():
             for instancia in classe.all():
                 classe.delete(id=instancia.id)
 
+
 if __name__ == "__main__":
     #! Definicao da conecao com banco de dados e criacao das tabelas
-    GerenciadorEntidades.engine = create_engine(
-        "mysql+pymysql://root:root@localhost/cursos_online"
-    )
+    GerenciadorEntidades.engine = create_engine("mysql+pymysql://root:root@localhost/cursos_online")
     GerenciadorEntidades.base.metadata.create_all(GerenciadorEntidades.engine)
     GerenciadorEntidades.session_maker = sessionmaker(bind=GerenciadorEntidades.engine)
     GerenciadorEntidades.session = GerenciadorEntidades.session_maker()

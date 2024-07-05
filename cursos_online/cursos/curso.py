@@ -1,17 +1,11 @@
-from cursos_online.funcionalidades_auxiliares.gerenciador_entidades import (
-    GerenciadorEntidades,
-)
+from cursos_online.funcionalidades_auxiliares.gerenciador_entidades import GerenciadorEntidades
+from cursos_online.cursos.aula import Aula
 
 # importacao das bibliotecas da SQL
-from sqlalchemy import (
-    Column,
-    Integer,
-    String,
-    DateTime,   
-    ForeignKey
-) 
+from sqlalchemy import Column, Integer, String, DateTime, ForeignKey
 from sqlalchemy.orm import relationship
 import datetime
+
 
 class Curso(GerenciadorEntidades.base, GerenciadorEntidades):
     # Definiçao nome da tebela
@@ -23,13 +17,15 @@ class Curso(GerenciadorEntidades.base, GerenciadorEntidades):
     criado_em = Column(DateTime, nullable=False)
     atualizado_em = Column(DateTime, nullable=False)
     decricao = Column(String(250), nullable=False)
+
     id_professor = Column(Integer, ForeignKey("professores.id"), nullable=False)
-    id_administrador = Column(Integer,ForeignKey("administradores.id"), nullable=False)
+    #!DESFAZER ADMINISTRADOR
+    id_administrador = Column(Integer, ForeignKey("administradores.id"), nullable=False)
 
     professor = relationship("Professor", back_populates="curso")
     administrador = relationship("Administrador", back_populates="curso")
     aulas = relationship("Aula", back_populates="curso")
-    
+
     # TODO: DEFINIR AS RELACOES COM OUTRAS TABELAS
     # ? TEM COMO MUDAR AS CORES PADRAO DESSES COMENTARIOS
 
@@ -43,5 +39,12 @@ class Curso(GerenciadorEntidades.base, GerenciadorEntidades):
 
         GerenciadorEntidades.__init__(self)
 
-     
-   
+    # Lita de aulas do curso
+    @property
+    def aulas(self):
+        return [aula for aula in Aula.all() if aula.curso == self]
+
+    @property
+    def alunos(self):
+        Matricula = next(subclasse for subclasse in list(GerenciadorEntidades.__subclasses__()) if subclasse.__name__ == "Matricula")
+        return [matricula.aluno for matricula in Matricula.all() if matricula.curso == self]
