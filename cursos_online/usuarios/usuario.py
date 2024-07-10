@@ -79,7 +79,7 @@ class Usuario(GerenciadorEntidades.base, GerenciadorEntidades):
         print("Senha hash enviada = ", Usuario.criacao_senha_hash(senha))
         for usuario in Usuario.all() + Aluno.all()  + Professor.all() + Administrador.all():
             print("Senha usuario = ", usuario.senha)
-            print("Senha hash usuario = ", Usuario.criacao_senha_hash(usuario.senha))
+            print("SAAAenha hash usuario = ", Usuario.criacao_senha_hash(usuario.senha))
       
         return next(
             (
