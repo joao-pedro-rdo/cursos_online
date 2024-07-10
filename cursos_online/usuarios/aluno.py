@@ -19,7 +19,7 @@ class Aluno(Usuario):
 
     # O atributo senha, que gera uma coluna do tipo string no banco de dados, armazena a senha
     # criptografada do usuário. Esta funcionalidade de criptografia de senha ainda deve ser implementada.
-    senha = Column(String(50), nullable=False)
+    senha = Column(String(200), nullable=False)
 
     # Variável padrão do SQLAlchemy que define a identidade polimórfica da classe (em linhas gerais, define o tipo de herança do SQLAlchemy)
     __mapper_args__ = {"polymorphic_identity": "alunos", "concrete": True}

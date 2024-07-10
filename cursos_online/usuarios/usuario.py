@@ -21,7 +21,7 @@ class Usuario(GerenciadorEntidades.base, GerenciadorEntidades):
     id = Column(Integer, primary_key=True, autoincrement=True)
     nome = Column(String(50), nullable=False)
     email = Column(String(50), nullable=False)
-    senha = Column(String(50), nullable=False)
+    senha = Column(String(200), nullable=False)
     cpf = Column(String(50), nullable=False)
 
     # Construtor, str =  " " type hint para usar dica do parametro mas pode usar outra coisa dica mesmo, e o = " " é o valor padrao
@@ -59,7 +59,7 @@ class Usuario(GerenciadorEntidades.base, GerenciadorEntidades):
         return nome_valido
 
     @classmethod
-    def criacao_senha_hash(senha: str) -> str:
+    def criacao_senha_hash(cls, senha: str) -> str:
         senha_bytes = senha.encode("utf-8")
         hash = sha256(senha_bytes)
         # Gera o hash em formato hexadecimal
@@ -67,12 +67,25 @@ class Usuario(GerenciadorEntidades.base, GerenciadorEntidades):
         return senha_hash
 
     @classmethod
-    def autenticacao(cls, email: str, senha: str) -> object:
+    def autenticar(cls, email: str, senha: str) -> object:
+        Aluno = next(subclasse for subclasse in list(Usuario.__subclasses__()) if subclasse.__name__ == "Aluno")
+        Professor = next(subclasse for subclasse in list(Usuario.__subclasses__()) if subclasse.__name__ == "Professor")
+        Administrador = next(subclasse for subclasse in list(Usuario.__subclasses__()) if subclasse.__name__ == "Administrador")
+        
+        print("SOU O ALUNO  ALL",Aluno.all())
+
+
+        print("Senha enviada = ", senha)
+        print("Senha hash enviada = ", Usuario.criacao_senha_hash(senha))
+        for usuario in Usuario.all() + Aluno.all()  + Professor.all() + Administrador.all():
+            print("Senha usuario = ", usuario.senha)
+            print("Senha hash usuario = ", Usuario.criacao_senha_hash(usuario.senha))
+      
         return next(
             (
                 usuario
-                for usuario in Usuario.all()
-                if usuario.email == email and Usuario.criacao_senha_hash(senha=senha) == Usuario.criacao_senha_hash(usuario.senha)
+                for usuario in Usuario.all() + Aluno.all()  + Professor.all() + Administrador.all()
+                if usuario.email == email and Usuario.criacao_senha_hash(senha=senha) == usuario.senha
             ),
             None,
         )

@@ -5,6 +5,9 @@ from sqlalchemy import func
 class GerenciadorEntidades:
     """Essa classe prove as principais funcionalidades bases para as demais classes."""
 
+    # Defininado variavel que controla se o usuario esta logado ou nao
+    usuario_logado = None
+    
     # Definindo a base de dados (padrão do SQLAlchemy)
     base = declarative_base()
 
