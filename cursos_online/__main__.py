@@ -22,8 +22,6 @@ def main():
         cpf=faker_instance.cpf(),
     )
 
-    for _ in range(10):
-        Aula(curso=choice(Curso.all()), nome=faker_instance.name(), url=faker_instance.url())
 
     arquivo_streamlit = path.join(path.dirname(__file__), "pagina_inicial.py")
 
