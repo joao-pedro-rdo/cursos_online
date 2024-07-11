@@ -71,21 +71,24 @@ class Usuario(GerenciadorEntidades.base, GerenciadorEntidades):
         Aluno = next(subclasse for subclasse in list(Usuario.__subclasses__()) if subclasse.__name__ == "Aluno")
         Professor = next(subclasse for subclasse in list(Usuario.__subclasses__()) if subclasse.__name__ == "Professor")
         Administrador = next(subclasse for subclasse in list(Usuario.__subclasses__()) if subclasse.__name__ == "Administrador")
-        
-        print("SOU O ALUNO  ALL",Aluno.all())
 
+        print("SOU O ALUNO  ALL", Aluno.all())
 
         print("Senha enviada = ", senha)
         print("Senha hash enviada = ", Usuario.criacao_senha_hash(senha))
-        for usuario in Usuario.all() + Aluno.all()  + Professor.all() + Administrador.all():
+        for usuario in Usuario.all() + Aluno.all() + Professor.all() + Administrador.all():
             print("Senha usuario = ", usuario.senha)
             print("SAAAenha hash usuario = ", Usuario.criacao_senha_hash(usuario.senha))
-      
+
         return next(
             (
                 usuario
-                for usuario in Usuario.all() + Aluno.all()  + Professor.all() + Administrador.all()
+                for usuario in Usuario.all() + Aluno.all() + Professor.all() + Administrador.all()
                 if usuario.email == email and Usuario.criacao_senha_hash(senha=senha) == usuario.senha
             ),
             None,
         )
+
+    @classmethod
+    def retorna_id_peloNome(cls, nome: str) -> int:
+        return next(usuario.id for usuario in cls.all() if usuario.nome == nome)

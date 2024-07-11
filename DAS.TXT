@@ -1,1 +1,0 @@
-Chumbar atributo no gerenciador de entidades de usuario logado e verificar ele, e acresentar a  informação do usuario logado

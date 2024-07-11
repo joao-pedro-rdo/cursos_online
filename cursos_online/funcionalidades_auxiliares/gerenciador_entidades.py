@@ -7,7 +7,7 @@ class GerenciadorEntidades:
 
     # Defininado variavel que controla se o usuario esta logado ou nao
     usuario_logado = None
-    
+
     # Definindo a base de dados (padrão do SQLAlchemy)
     base = declarative_base()
 
@@ -90,3 +90,19 @@ class GerenciadorEntidades:
             print(f"Instância {id} deletada com sucesso.")
         else:
             print(f"Instância com ID {id} não encontrada.")
+
+    @staticmethod
+    def verifica_autenticacao():
+        """Verifica se o usuario esta autenticado"""
+        if GerenciadorEntidades.usuario_logado != None:
+            return True
+        return False
+
+    @staticmethod
+    def tipo_usuario_logado():
+        """Retorna o tipo do usuario logado"""
+        return type(GerenciadorEntidades.usuario_logado)
+
+    @staticmethod
+    def retorna_id(cls, id: int):
+        return GerenciadorEntidades.session.query(cls).filter(cls.id == id).first()

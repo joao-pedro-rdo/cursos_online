@@ -26,9 +26,6 @@ class Curso(GerenciadorEntidades.base, GerenciadorEntidades):
     administrador = relationship("Administrador", back_populates="curso")
     aulas = relationship("Aula", back_populates="curso")
 
-    # TODO: DEFINIR AS RELACOES COM OUTRAS TABELAS
-    # ? TEM COMO MUDAR AS CORES PADRAO DESSES COMENTARIOS
-
     def __init__(self, nome: str = "", descricao: str = "", id_professor: int = 0, id_administrador: int = 0):
         self.nome = nome
         self.decricao = descricao
@@ -48,3 +45,7 @@ class Curso(GerenciadorEntidades.base, GerenciadorEntidades):
     def alunos(self):
         Matricula = next(subclasse for subclasse in list(GerenciadorEntidades.__subclasses__()) if subclasse.__name__ == "Matricula")
         return [matricula.aluno for matricula in Matricula.all() if matricula.curso == self]
+
+    @staticmethod
+    def retorna_cls_peloNome(nome: str):
+        return next(curso for curso in Curso.all() if curso.nome == nome)
