@@ -1,19 +1,13 @@
-# Use root/example as user/password credentials
-version: '3.1'
+version: '3.8'
 
 services:
-
   db:
-    image: mysql
-    restart: always
+    image: mysql:latest
     container_name: bd-cursos-online
     environment:
       MYSQL_ROOT_PASSWORD: root
-    networks:
-      macvlan_net:
-        ipv4_address: 192.168.1.115
-
-networks:
-  macvlan_net:
-    name: "macvlan-net"
-    external: true
+      MYSQL_DATABASE: cursos_online
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - "3306:3306"

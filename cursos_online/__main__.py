@@ -14,16 +14,6 @@ from os import path
 
 
 def main():
-    faker_instance = Faker(locale="pt_BR")
-    Administrador(
-        email="123@gmail.com",
-        senha=Usuario.criacao_senha_hash(senha="123"),
-        nome=faker_instance.name(),
-        cpf=faker_instance.cpf(),
-    )
-
-    for _ in range(10):
-        Aula(curso=choice(Curso.all()), nome=faker_instance.name(), url=faker_instance.url())
 
     arquivo_streamlit = path.join(path.dirname(__file__), "pagina_inicial.py")
 
