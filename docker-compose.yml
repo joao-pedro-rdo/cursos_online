@@ -9,5 +9,15 @@ services:
       MYSQL_DATABASE: cursos_online
     volumes:
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      default:
+        ipv4_address: 192.168.0.101
     ports:
       - "3306:3306"
+
+networks:
+  default:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 192.168.0.0/24

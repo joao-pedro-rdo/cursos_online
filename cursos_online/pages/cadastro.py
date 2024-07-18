@@ -51,7 +51,7 @@ def criar_conta():
 criar_conta()
 
 #! Definicao da conecao com banco de dados e criacao das tabelas
-GerenciadorEntidades.engine = create_engine("mysql+pymysql://root:root@localhost/cursos_online")
+GerenciadorEntidades.engine = create_engine("mysql+pymysql://root:root@192.168.0.101/cursos_online")
 GerenciadorEntidades.base.metadata.create_all(GerenciadorEntidades.engine)
 GerenciadorEntidades.session_maker = sessionmaker(bind=GerenciadorEntidades.engine)
 GerenciadorEntidades.session = GerenciadorEntidades.session_maker()
