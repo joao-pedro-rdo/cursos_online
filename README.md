@@ -20,6 +20,15 @@ python3 -B -m cursos_online
 ```
 
 ## Como levantar o banco de dados com docker + doker compose (Recomendado)
+Para criar a rede docker que possibilita a comunicação entre os containers e a maquina host dentro da sua rede local 
+```bash
+docker network create -d ipvlan \
+  --subnet=192.168.0.0/24 \
+  --gateway=192.168.0.1 \
+  -o parent=wlp2s0 \
+  my_ipvlan_wifi_network
+```
+
 Para instanciar e levantar o nosso container docker pela primeira vez(deve estar no diretorio do `/cursos_online`):
 ```bash
 docker-compose up -d
