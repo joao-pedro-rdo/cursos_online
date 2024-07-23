@@ -1,26 +1,54 @@
-# cursos_online (Em desenvolvimento)
-Projeto de plataforma de cursos em python orientado a objetos
-## Como usar o poetry para executar o projeto
-Instale o poetry atraves do seguinte link [Poetry](https://python-poetry.org/docs/#installing-with-the-official-installer)
+# Plataforma de Cursos Online (Em desenvolvimento)
+Projeto de plataforma de cursos em Python orientado a objetos.
 
-Com o poetry instalado faça:
-- Para instalar o ambiente virtual com as dependencias do projeto
-```bash
-poetry install
+## Descrição do projeto
+Este projeto visa desenvolver uma plataforma de cursos online utilizando Python e orientação a objetos. A plataforma permite que os usuários se inscrevam em cursos, assistam às aulas e acompanhem seu progresso. O projeto é construído utilizando boas práticas de desenvolvimento de software e ferramentas modernas como Poetry e Docker.
+
+## Estrutura do projeto
+A estrutura de diretórios do projeto é organizada da seguinte forma:
+
 ```
-- Para abrir o ambiente virtual
+cursos_online/
+├── cursos_online/
+│ ├── init.py
+│ ├── main.py
+│ └── ...
+├── pyproject.toml
+├── README.md
+└── docker-compose.yml
+```
+
+- `cursos_online/`: Contém o código fonte do projeto.
+- `pyproject.toml`: Arquivo de configuração do Poetry.
+- `README.md`: Documentação do projeto.
+- `docker-compose.yml`: Arquivo de configuração do Docker Compose.
+
+## Guia de Instalação
+### Instalando dependências com Poetry
+Poetry é uma ferramenta de gerenciamento de dependências e ambientes virtuais para projetos Python. Para instalar o Poetry, siga as instruções no site oficial [Poetry](https://python-poetry.org/docs/#installing-with-the-official-installer).
+
+Depois de instalar o Poetry, execute os seguintes comandos para configurar o ambiente virtual e instalar as dependências do projeto:
 ```bash
+# Instalar as dependências do projeto
+poetry install
+
+# Abrir o ambiente virtual
 poetry shell
 ```
 
-## Como executar o projeto
-- Executar o projeto (deve estar no diretorio cursos_online)
+## Guia de Execução
+### Executando o projeto
+Para executar o projeto, certifique-se de estar no diretório cursos_online e execute o seguinte comando:
 ```bash
 python3 -B -m cursos_online
 ```
 
-## Como levantar o banco de dados com docker + doker compose (Recomendado)
-Para criar a rede docker que possibilita a comunicação entre os containers e a maquina host dentro da sua rede local 
+## Executando o banco de dados com Docker e Docker Compose (Recomendado)
+Para facilitar a configuração do banco de dados, utilizamos o Docker e o Docker Compose. Docker é uma plataforma para desenvolver, enviar e executar aplicações em containers, enquanto Docker Compose é uma ferramenta para definir e gerenciar aplicações multi-container.
+
+### Criar uma rede Docker
+Primeiro, crie uma rede Docker que possibilita a comunicação entre os containers e a máquina host dentro da sua rede local:
+
 ```bash
 docker network create -d ipvlan \
   --subnet=192.168.0.0/24 \
@@ -28,29 +56,37 @@ docker network create -d ipvlan \
   -o parent=wlp2s0 \
   my_ipvlan_wifi_network
 ```
-
-Para instanciar e levantar o nosso container docker pela primeira vez(deve estar no diretorio do `/cursos_online`):
+Levantar o container do banco de dados
+No diretório do projeto (/cursos_online), execute:
 ```bash
 docker-compose up -d
 ```
-verificar se esta ativo
+
+Acessar o container do banco de dados
 ```bash
-docker-compose ps
-```
-Comando para entrar no container do banco de dados:
 docker exec -it bd-cursos-online mysql -u root -p
+```
+*Senha:* `root`
 
-`senha: root`
 
+Configurando MySQL na própria máquina
+Caso prefira configurar o MySQL localmente, siga os passos abaixo:
 
-## Configurando Mysql na propria maquina
-- instale o Mysql
+Instale o MySQL:
 ```bash
 sudo apt install mysql-server
 ```
-- Entre na conta root e crie a database
+Entre na conta root e crie a base de dados:
 ```bash
 mysql -u root -p
 create database cursos_online;
 ```
-*AGORA O BANCO DE DADOS ESTA PRONTO PRA SER EXECUTADO NA APLICAÇÃO*
+
+## Equipe de Desenvolvimento
+Nome: João Pedro Ramos de Oliveira
+
+E-mail: joaoprdo2.aluno@unimpampa.edu.br
+
+
+
+
