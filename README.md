@@ -10,15 +10,42 @@ A estrutura de diretórios do projeto é organizada da seguinte forma:
 ```
 cursos_online/
 ├── cursos_online/
-│ ├── init.py
-│ ├── main.py
-│ └── ...
+│ ├── __init__.py
+│ ├── __main__.py
+│ ├── pagina_inicial.py
+│ └── funcionalidades_auxiliares/
+│     ├── __init__.py
+│     ├── gerenciador_entidades.py      
+│ └── pages/ 
+│     ├── __init__.py
+│     ├── busca.py
+│     ├── cadastro.py
+│     ├── login.py
+│     ├── matricula.py
+│     ├── menu_administrador.py
+│     ├── menu_aluno.py
+│     ├── menu_professor.py
+│ └── usuarios/
+│     ├── __init__.py
+│     ├── administrador.py
+│     ├── aluno.py
+│     ├── professor.py
+│     ├── matricula.py 
+│     ├── usuario.py 
+│ └── cursos/
+│     ├── __init__.py
+│     ├── curso.py
+│     ├── aula.py
 ├── pyproject.toml
 ├── README.md
 └── docker-compose.yml
 ```
 
 - `cursos_online/`: Contém o código fonte do projeto.
+- `pages/`: Contém os arquivos de páginas da aplicação com streamlit.
+- `usuarios/`: Contém as classes de usuários da aplicação.
+- `cursos/`: Contém as classes de cursos da aplicação.
+- `funcionalidades_auxiliares/`: Contém as classes de gerenciamento de entidades.
 - `pyproject.toml`: Arquivo de configuração do Poetry.
 - `README.md`: Documentação do projeto.
 - `docker-compose.yml`: Arquivo de configuração do Docker Compose.
