@@ -43,7 +43,7 @@ matricular_curso()
 
 
 #! Definicao da conecao com banco de dados e criacao das tabelas
-GerenciadorEntidades.engine = create_engine("mysql+pymysql://root:root@172.25.0.3/cursos_online")
+GerenciadorEntidades.engine = create_engine("mysql+pymysql://root:root@mysql.local/cursos_online")
 GerenciadorEntidades.base.metadata.create_all(GerenciadorEntidades.engine)
 GerenciadorEntidades.session_maker = sessionmaker(bind=GerenciadorEntidades.engine)
 GerenciadorEntidades.session = GerenciadorEntidades.session_maker()

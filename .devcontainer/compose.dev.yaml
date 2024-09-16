@@ -10,6 +10,8 @@ services:
     ports:
       - "8501:8501" # Porta que o Streamlit roda a aplicação
     command: sleep infinity
+    extra_hosts:
+      - "mysql.local:172.25.0.3"
     networks:
       cursos-online-network:
         ipv4_address: 172.25.0.2

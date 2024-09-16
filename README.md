@@ -42,7 +42,7 @@ A execução do projeto foi planejada para ser realizada usando Docker, para fac
   - Docker
   - Docker Compose
   - Visual Studio Code
-    - Devcontainers
+    - [Devcontainers](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers)
 
 - Execução do ambiente de homologação local:
   - Docker 
