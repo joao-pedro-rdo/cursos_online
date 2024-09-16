@@ -1,7 +1,6 @@
-version: '3.8'
-
+# Docker compos do banco de dados em MYSQL
 services:
-  db:
+  db-cursos-online:
     image: mysql:latest
     container_name: bd-cursos-online
     environment:
@@ -12,11 +11,14 @@ services:
     ports:
       - "3306:3306"
     networks:
-      my_ipvlan_wifi_network:
-        ipv4_address: 172.17.0.3
+      cursos-online-network:
+        ipv4_address: 172.25.0.3
 
 networks:
-  my_ipvlan_wifi_network:
-    external: true
-    name: "my_ipvlan_wifi_network"
+  cursos-online-network:
+    name: "cursos-online-network"
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.25.0.0/16
 

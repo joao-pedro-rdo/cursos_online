@@ -1,0 +1,19 @@
+services:
+  cursos_online:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8501:8501" # Porta que o Streamlit roda a aplicação
+    networks:
+      - cursos-online-network
+  
+include:
+  - ./compose.db.yml
+networks:
+  cursos-online-network:
+    name: "cursos-online-network"
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.25.0.0/16

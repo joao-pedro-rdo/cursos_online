@@ -1,21 +1,40 @@
 // For format details, see https://aka.ms/devcontainer.json. For config options, see the
 // README at: https://github.com/devcontainers/templates/tree/main/src/ubuntu
 {
-	"name": "Ubuntu",
+	"name": "Dev Python",
+	"service": "app",
+	//! json antigo
 	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
-	"image": "mcr.microsoft.com/devcontainers/base:jammy",
-	"features": {
-		"ghcr.io/devcontainers/features/python:1": {
-			"installTools": true,
-			"version": "latest"
-		},
-		"ghcr.io/devcontainers-contrib/features/black:2": {
-			"version": "latest"
-		},
-		"ghcr.io/devcontainers-contrib/features/poetry:2": {
-			"version": "latest"
+	//"image": "mcr.microsoft.com/devcontainers/base:jammy",
+	// "features": {
+	// 	"ghcr.io/devcontainers/features/python:1": {
+	// 		"installTools": true,
+	// 		"version": "latest"
+	// 	},
+	// 	"ghcr.io/devcontainers-contrib/features/black:2": {
+	// 		"version": "latest"
+	// 	},
+	// 	"ghcr.io/devcontainers-contrib/features/poetry:2": {
+	// 		"version": "latest"
+	// 	}
+	// }
+	"dockerComposeFile": "compose.dev.yaml",
+	"workspaceFolder": "/app",
+	"postCreateCommand": "poetry install && poetry shell",
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"ms-azuretools.vscode-docker",
+				"ms-python.black-formatter",
+				"ms-python.python",
+				"usernamehw.errorlens",
+				"christian-kohler.path-intellisense"
+			]
 		}
 	}
+	
+
+
 
 	// Features to add to the dev container. More info: https://containers.dev/features.
 	// "features": {},
@@ -32,3 +51,4 @@
 	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
 	// "remoteUser": "root"
 }
+

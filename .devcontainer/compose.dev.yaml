@@ -1,0 +1,26 @@
+# Docker compose do ambiente de desenvolvimento com devcontainers
+# O banco de dados é levantado juntamente com o ambiente de desenvolvimento
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    volumes:
+      - ..:/app:cached
+    ports:
+      - "8501:8501" # Porta que o Streamlit roda a aplicação
+    command: sleep infinity
+    networks:
+      cursos-online-network:
+        ipv4_address: 172.25.0.2
+# Dokcer compose do banco de dados
+include:
+  - ./compose.db.yml
+
+networks:
+  cursos-online-network:
+    name: "cursos-online-network"
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.25.0.0/16
