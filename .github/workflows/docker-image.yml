@@ -23,3 +23,12 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
  #   - name: Build the Docker image
  #     run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+    - name: Build and push
+      uses: docker/build-push-action@v6
+      with:
+        context: . 
+        file: .
+        push: true
+        tags: |
+          joaoprdo/cursos-online:v${{github.run_number}}
+          joaoprdo/cursos-online:latest
