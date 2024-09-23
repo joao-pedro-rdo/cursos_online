@@ -22,7 +22,13 @@ def criar_conta():
     st.title("Cadastro de Usuário")
 
     name = st.text_input("Nome")
+    # email = st.text_input("Email")
     email = st.text_input("Email")
+    if (Usuario.valida_email(email)) == False:
+        st.error("Email inválido")
+    else:
+        st.success("Email Valido")
+
     cpf = st.text_input("CPF")
     senha = st.text_input("Senha", type="password")
     senha = Usuario.criacao_senha_hash(senha)
@@ -32,8 +38,14 @@ def criar_conta():
             st.success("Usuário cadastrado com sucesso!")
     if st.button("Cadastrar como Professor"):
         if name and email and senha:
-            new_user = Professor(email=email, senha=senha, nome=name, cpf=cpf)
-            st.success("Usuário cadastrado com sucesso!")
+            teste = Usuario.valida_email(email)
+            print(teste)
+            if teste == False:
+                st.error("Email inválido")
+            else:
+                st.success("Email Valido")
+                new_user = Professor(email=email, senha=senha, nome=name, cpf=cpf)
+                st.success("Usuário cadastrado com sucesso!")
     if st.button("Cadastrar como Administrador"):
         if name and email and senha:
             new_user = Administrador(email=email, senha=senha, nome=name, cpf=cpf)

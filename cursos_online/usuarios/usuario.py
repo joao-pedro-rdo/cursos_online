@@ -10,6 +10,7 @@ from cursos_online.funcionalidades_auxiliares.gerenciador_entidades import Geren
 from sqlalchemy import Column, Integer, String
 
 from hashlib import sha256
+import re
 
 
 class Usuario(GerenciadorEntidades.base, GerenciadorEntidades):
@@ -92,3 +93,7 @@ class Usuario(GerenciadorEntidades.base, GerenciadorEntidades):
     @classmethod
     def retorna_id_peloNome(cls, nome: str) -> int:
         return next(usuario.id for usuario in cls.all() if usuario.nome == nome)
+
+    @staticmethod
+    def valida_email(email) -> bool:
+        return re.match(r"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z]{2,}(?:\.[a-zA-Z]{2,})?$", email) is not None
