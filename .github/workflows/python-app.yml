@@ -35,8 +35,8 @@ jobs:
 #        flake8 . --max-line-length=100 --ignore=E203,W503
     - name: Instalaçao das dependecias do projeto
       run: |
-        pip install pytest
-        # if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+        #pip install pytest
+        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
     - name: Teste com pytest
       run: |
         pytest
