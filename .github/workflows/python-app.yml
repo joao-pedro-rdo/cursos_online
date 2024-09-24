@@ -39,4 +39,4 @@ jobs:
     - name: Teste com pytest
       run: |
         pytest
-      working-directory: cursos_online/testes
+      working-directory: cursos_online
