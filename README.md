@@ -16,6 +16,9 @@ Projeto de plataforma de cursos em Python orientado a objetos, este projeto aind
   - [ ] Adicionar testes
   - [ ] Adicionar pasta somente de da arquivos docker
   - [ ] Adcionar documentação das tecnologias utilizadas no docker compose (DNS, volumes, Networks, include, etc)
+  - [ ] Atualizar documentação sobre os testes de unidade com pipeline
+  - [ ] Arrumar pipeline de deploy com docker 
+
 
 ## Descrição do projeto
 Este projeto visa desenvolver uma plataforma de cursos online utilizando Python e orientação a objetos. A plataforma permite que os usuários se inscrevam em cursos, assistam às aulas e acompanhem seu progresso. O projeto é construído utilizando boas práticas de desenvolvimento de software e ferramentas modernas como Poetry e Docker e desenvolvido usando devcontainers.

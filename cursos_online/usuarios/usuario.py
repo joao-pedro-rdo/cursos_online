@@ -51,7 +51,7 @@ class Usuario(GerenciadorEntidades.base, GerenciadorEntidades):
 
     @classmethod
     def validacao_senha(cls, senha: str) -> bool:
-        senha_valida = len(senha) >= 5
+        senha_valida = len(senha) >= 8
         return senha_valida
 
     @classmethod
@@ -97,3 +97,19 @@ class Usuario(GerenciadorEntidades.base, GerenciadorEntidades):
     @staticmethod
     def valida_email(email) -> bool:
         return re.match(r"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z]{2,}(?:\.[a-zA-Z]{2,})?$", email) is not None
+
+    @staticmethod
+    def validar_senha(senha):
+        # Regex para validar a senha: entre 8 e 16 caracteres, pelo menos um número e uma letra
+        pattern = r"^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,16}$"
+        return bool(re.fullmatch(pattern, senha))
+
+    @staticmethod
+    def validar2_senha(senha):
+        if len(senha) < 8 or len(senha) > 16:
+            return False
+        if not any(c.isdigit() for c in senha):
+            return False
+        if not any(c.isalpha() for c in senha):
+            return False
+        return True
