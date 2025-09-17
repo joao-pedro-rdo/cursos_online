@@ -1,0 +1,22 @@
+name: Scan Dockerfile Workflow
+
+on:
+  workflow_dispatch:
+
+jobs:
+  Scan-Dockerfile:
+    permissions:
+      contents: read
+      issues: write
+      pull-requests: write
+    runs-on: ubuntu-latest
+    name: Scan Dockerfile Step
+    steps:
+      - name: Checlkou do repo
+        uses: actions/checkout@v4
+      - name: Scan
+        id: scan-dockerfile
+        uses: joao-pedro-rdo/scan-dockerfile@v0.1.0
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN}}
+          API_TOKEN: ${{ secrets.API_GEMINI}}
