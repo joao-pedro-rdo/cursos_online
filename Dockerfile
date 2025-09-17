@@ -3,8 +3,8 @@ FROM python
 WORKDIR /app
 
 COPY . .
-
-# Instala as dependências com pip
+RUN apt update -y
+RUN apt ugrade -y 
 RUN pip install -r requirements.txt
 
 
