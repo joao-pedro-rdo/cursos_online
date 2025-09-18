@@ -20,4 +20,4 @@ jobs:
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           API_TOKEN: ${{ secrets.API_GIMINI }}
-          MODEL_NAME: "gemini-1.5-pro"
+          MODEL_NAME: "gemini-1.5-flash"
