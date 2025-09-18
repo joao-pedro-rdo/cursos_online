@@ -16,7 +16,8 @@ jobs:
         uses: actions/checkout@v4
       - name: Scan
         id: scan-dockerfile
-        uses: joao-pedro-rdo/scan-dockerfile@v0.1.0
+        uses: joao-pedro-rdo/scan-dockerfile@develop
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           API_TOKEN: ${{ secrets.API_GIMINI }}
+          MODEL_NAME: "gemini-1.5-pro"
